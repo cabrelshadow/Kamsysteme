@@ -1,0 +1,26 @@
+{
+  "name": "kamsysteme",
+  "version": "1.0.0",
+  "description": "application de gestion  du centre de santé kam siham",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.3.4",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.32.0",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.1"
+  }
+}
