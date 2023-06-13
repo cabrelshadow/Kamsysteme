@@ -1,7 +1,6 @@
 # Kamsysteme
 application de gestion  du centre de santé kam siham
-
-
+````
 Sequelize CLI [Node: 18.15.0, CLI: 6.6.1, ORM: 6.32.0]
 
 sequelize <commande>
@@ -32,3 +31,4 @@ Commandes :
 
 Options :
   --version  Affiche le numéro de version                                                                                                                                 [booléen]  --help     Affiche l'aide                                                                                                                                               [booléen]
+````
