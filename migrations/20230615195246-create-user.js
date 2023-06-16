@@ -1,64 +1,67 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       nom: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       prenom: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      birthday: {
+        type: Sequelize.DATE,
       },
       contact: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       role: {
         type: Sequelize.INTEGER,
         references: {
           model: {
             tableName: "Roles",
-            schema:"schema"
+            schema: "schema",
           },
-          key:"id"
-        }
+          key: "id",
+        },
       },
       status: {
         type: Sequelize.BOOLEAN,
-        defaultValue:true
+        defaultValue: true,
       },
       id_section: {
         type: Sequelize.INTEGER,
         references: {
           model: {
             tableName: "Sections",
-            schema:"schema"
+            schema: "schema",
           },
-          key:"id"
-        }
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
-  }
+    await queryInterface.dropTable("Users");
+  },
 };

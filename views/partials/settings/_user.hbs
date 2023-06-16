@@ -1,0 +1,66 @@
+<div class="table-responsive">
+    <div class="float-end mb-3">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUser"><i class="align-middle" data-feather="plus"></i> Ajouter un utilisateur</button>
+    </div>
+    <table class="table table-striped">
+        <thead class="">
+            <caption>List des utilisateurs</caption>
+            <tr>
+                <th>Nom et prenom</th>
+                <th>Date de naissance</th>
+                <th>Contact</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+            <tbody class="">
+               
+            </tbody>
+    </table>
+</div>
+
+<!-- Modal Body -->
+<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+<div class="modal fade" id="addUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+    aria-labelledby="modalTitleaddUser" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleaddUser">Ajouter un utilisateur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom </label>
+                        <input type="text" class="form-control" name="nom" id="nom" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prennom" class="form-label">Prenom </label>
+                        <input type="text" class="form-control" name="prenom" id="prenom" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact" class="form-label">Contact </label>
+                        <input type="tel" class="form-control" name="contact" id="contact" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="birthday" class="form-label">Date de naissance </label>
+                        <input type="date" class="form-control" name="birthday" id="birthday" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mot de passe </label>
+                        <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted"></small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
