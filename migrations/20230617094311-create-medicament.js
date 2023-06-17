@@ -2,21 +2,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Consultations", {
+    await queryInterface.createTable("Medicaments", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      nom_consultation: {
+      nom: {
         type: Sequelize.STRING,
       },
-      id_patient: {
+      prix: {
+        type: Sequelize.INTEGER,
+      },
+      date_expiration: {
+        type: Sequelize.DATE,
+      },
+      quantite: {
         type: Sequelize.INTEGER,
       },
       user_id: {
         type: Sequelize.INTEGER,
+        /* references: {
+          model: {
+            tableName: "User",
+            schema: "schema",
+          },
+          key: "id",
+        }, */
       },
       createdAt: {
         allowNull: false,
@@ -27,11 +40,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    // Add foreign key constraint
-    await queryInterface.addConstraint("Consultations", {
+    await queryInterface.addConstraint("Medicaments", {
       fields: ["user_id"],
       type: "foreign key",
-      name: "fk_consultation_users",
+      name: "fk_user_medicamment",
       references: {
         table: "Users",
         field: "id",
@@ -39,22 +51,9 @@ module.exports = {
       onDelete: "SET NULL",
       onUpdate: "CASCADE",
     });
-    await queryInterface.addConstraint("Consultations", {
-      fields: ["id_patient"],
-      type: "foreign key",
-      name: "fk_patient_users",
-      references: {
-        table: "Patients",
-        field: "id",
-      },
-      onDelete: "SET NULL",
-      onUpdate: "CASCADE",
-    });
   },
-
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeConstraint("visiteurs", "fk_consultation_users");
-    await queryInterface.removeConstraint("visiteurs", "fk_patient_users");
-    await queryInterface.dropTable("Consultations");
+    await queryInterface.removeConstraint("Medicaments", "fk_user_medicamment");
+    await queryInterface.dropTable("Medicaments");
   },
 };

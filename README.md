@@ -32,3 +32,19 @@ Commandes :
 Options :
   --version  Affiche le numéro de version                                                                                                                                 [booléen]  --help     Affiche l'aide                                                                                                                                               [booléen]
 ````
+
+# Get Started
+
+
+## if it is mysql
+````bash
+sequelize db:create
+````
+
+````bash
+npm run migrate
+````
+
+````bash
+npm run dev
+````

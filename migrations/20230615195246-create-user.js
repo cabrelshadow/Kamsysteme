@@ -27,15 +27,8 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
       },
-      role: {
+      id_role: {
         type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Roles",
-            schema: "schema",
-          },
-          key: "id",
-        },
       },
       status: {
         type: Sequelize.BOOLEAN,
@@ -43,13 +36,6 @@ module.exports = {
       },
       id_section: {
         type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Sections",
-            schema: "schema",
-          },
-          key: "id",
-        },
       },
       createdAt: {
         allowNull: false,
@@ -60,8 +46,37 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    // Add foreign key constraints
+    await queryInterface.addConstraint("Users", {
+      fields: ["id_role"],
+      type: "foreign key",
+      name: "fk_users_roles",
+      references: {
+        table: "Roles",
+        field: "id",
+      },
+      onDelete: "SET NULL",
+      onUpdate: "CASCADE",
+    });
+    await queryInterface.addConstraint("Users", {
+      fields: ["id_section"],
+      type: "foreign key",
+      name: "fk_users_sections",
+      references: {
+        table: "Sections",
+        field: "id",
+      },
+      onDelete: "SET NULL",
+      onUpdate: "CASCADE",
+    });
   },
+
   async down(queryInterface, Sequelize) {
+    // Remove foreign key constraints
+    await queryInterface.removeConstraint("Users", "fk_users_roles");
+    await queryInterface.removeConstraint("Users", "fk_users_sections");
+
     await queryInterface.dropTable("Users");
   },
 };

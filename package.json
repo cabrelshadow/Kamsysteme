@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "migrate":"sequelize db:migrate --name 20230615195835-create-role.js && sequelize db:migrate --name 20230615200102-create-section.js  && sequelize db:migrate --name 20230615195246-create-user.js && sequelize db:migrate --name 20230617094311-create-medicament.js && sequelize db:migrate"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,7 @@
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^9.0.0",
-    "mysql2": "^3.3.4",
+    "mysql2": "^3.3.5",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",

@@ -2,31 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Reponses", {
+    await queryInterface.createTable("Prescriptions", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      reponse: {
-        type: Sequelize.STRING,
-      },
-      consultation_id: {
+      medicament_id: {
         type: Sequelize.INTEGER,
-        /*  references: {
+        /* references: {
           model: {
-            tableName: "Consultations",
+            tableName: "Medicaments",
             schema: "schema",
           },
           key: "id",
         }, */
       },
-      question_id: {
+      consultation_id: {
         type: Sequelize.INTEGER,
-        /*  references: {
+        /* references: {
           model: {
-            tableName: "Questions",
+            tableName: "Consultations",
             schema: "schema",
           },
           key: "id",
@@ -41,12 +38,11 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-
     // Add foreign key constraints
-    await queryInterface.addConstraint("Reponses", {
+    await queryInterface.addConstraint("Prescriptions", {
       fields: ["consultation_id"],
       type: "foreign key",
-      name: "fk_reponses_consultations",
+      name: "fk_prescriptions_consultations",
       references: {
         table: "Consultations",
         field: "id",
@@ -54,13 +50,12 @@ module.exports = {
       onDelete: "SET NULL",
       onUpdate: "CASCADE",
     });
-
-    await queryInterface.addConstraint("Reponses", {
-      fields: ["question_id"],
+    await queryInterface.addConstraint("Prescriptions", {
+      fields: ["medicament_id"],
       type: "foreign key",
-      name: "fk_reponses_questions",
+      name: "fk_medicament_consultations",
       references: {
-        table: "Questions",
+        table: "Medicaments",
         field: "id",
       },
       onDelete: "SET NULL",
@@ -68,12 +63,14 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    // Remove foreign key constraints
     await queryInterface.removeConstraint(
-      "Reponses",
-      "fk_reponses_consultations",
+      "Prescriptions",
+      "fk_prescriptions_consultations",
     );
-    await queryInterface.removeConstraint("Reponses", "fk_reponses_questions");
-    await queryInterface.dropTable("Reponses");
+    await queryInterface.removeConstraint(
+      "Prescriptions",
+      "fk_medicament_consultations",
+    );
+    await queryInterface.dropTable("Prescriptions");
   },
 };
