@@ -9,12 +9,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasOne(models.Role, {
+      this.belongsTo(models.Role, {
         foreignKey: "id_role",
         onDelete: "CASCADE",
       });
-      this.hasOne(models.Section, {
+      this.belongsTo(models.Section, {
         foreignKey: "id_section",
+        onDelete: "CASCADE",
+      });
+      this.hasMany(models.Visiteur, {
+        foreignKey: "add_by",
+        onDelete: "CASCADE",
+      });
+      this.hasMany(models.Consultation, {
+        foreignKey: "user_id",
         onDelete: "CASCADE",
       });
     }

@@ -19,16 +19,17 @@ router.post("/login", (req, res, next) => {
 
 router.post("/add-user", async (req, res) => {
   if (Object.keys(req.body).length > 0) {
-    const { nom, prenom, password, birthday, contact, role } = req.body;
+    const { nom, prenom, password, birthday, contact, id_role } = req.body;
     await db.User.create({
-      nom,
+      nom: String(nom).toUpperCase(),
       prenom,
       contact,
-      role,
+      id_role,
       birthday,
+      username: `${String(nom).toLowerCase()}-${String(prenom).toLowerCase()}`,
       password: hashSync(password, 10),
     });
-    res.redirect("/login");
+    res.redirect(req.headers.referer);
   }
 });
 

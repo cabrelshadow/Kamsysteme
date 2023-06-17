@@ -45,6 +45,7 @@ app.use(passport.session());
 
 app.use("/", require("./routes/index"));
 app.use("/settings", require("./routes/settings"));
+app.use("/user", require("./routes/user"));
 const port = process.env.PORT || 8000;
 
 http.createServer(app).listen(port, () => {
