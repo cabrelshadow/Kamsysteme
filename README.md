@@ -44,7 +44,16 @@ sequelize db:create
 ````bash
 npm run migrate
 ````
-
+````bash
+sequelize db:seed:all
+````
 ````bash
 npm run dev
+````
+
+## Instrutions
+
+Faut créer un fichier <b>.env</b> et cré la variable 
+````bash 
+secret="1234567890" 
 ````
