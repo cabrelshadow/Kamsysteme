@@ -4,12 +4,12 @@ const { hashSync } = require("bcryptjs");
 const router = require("express").Router();
 
 router.get("/login", (_, res) => {
-  res.render("user/login");
+  res.render("user/login", { layout: false });
 });
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     failureRedirect: "/users/login",
-    successRedirect: "/users/redirectLogin",
+    successRedirect: "/",
   })(req, res, next);
 });
 
