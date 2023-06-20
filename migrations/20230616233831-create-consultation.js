@@ -12,6 +12,26 @@ module.exports = {
       nom_consultation: {
         type: Sequelize.STRING
       },
+      id_patient: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Patient",
+            schema: "schema",
+          },
+          key: "id",
+        },
+      },
+      id_user: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "User",
+            schema: "schema",
+          },
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -14,14 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.consultation,{
         foreignKey:"id_patient",
         onDelete:"CASCADE"
-     })
+      })
+      this.hasOne(models.User, {
+        foreignKey: "user_id",
+        onDelete:"CASCADE"
+      })
       
     }
   }
   Consultation.init({
     nom_consultation: DataTypes.STRING,
      id_patient:DataTypes.INTEGER,
-     
+     user_id:DataTypes.INTEGER
 
   }, {
     sequelize,
