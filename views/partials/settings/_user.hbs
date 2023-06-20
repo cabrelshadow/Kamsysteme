@@ -7,13 +7,23 @@
             <caption>List des utilisateurs</caption>
             <tr>
                 <th>Nom et prenom</th>
+                <td>Nom d'utilisateur</td>
                 <th>Date de naissance</th>
                 <th>Contact</th>
                 <th>Role</th>
             </tr>
             </thead>
             <tbody class="">
-               
+               {{#each users}}
+                <tr>
+                    <td>{{nom}} {{prenom}}</td>
+                    <td>{{username}}</td>
+                    <td>{{birthday}}</td>
+                    <td>{{contact}}</td>
+                    <td>{{"Role.name"}}</td>
+                    
+                </tr>
+               {{/each}}
             </tbody>
     </table>
 </div>
@@ -29,14 +39,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="/user/add-user" method="post">
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom </label>
                         <input type="text" class="form-control" name="nom" id="nom" aria-describedby="helpId" placeholder="">
                         <small id="helpId" class="form-text text-muted"></small>
                     </div>
                     <div class="mb-3">
-                        <label for="prennom" class="form-label">Prenom </label>
+                        <label for="prenom" class="form-label">Prenom </label>
                         <input type="text" class="form-control" name="prenom" id="prenom" aria-describedby="helpId" placeholder="">
                         <small id="helpId" class="form-text text-muted"></small>
                     </div>
@@ -51,15 +61,26 @@
                         <small id="helpId" class="form-text text-muted"></small>
                     </div>
                     <div class="mb-3">
+                        <label for="id_role" class="form-label">Role</label>
+                        <select class="form-select form-select-lg" name="id_role" id="id_role">
+                            <option selected>Selectionner un rôle</option>
+                            {{#each roles}}
+                                <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                           
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="password" class="form-label">Mot de passe </label>
                         <input type="password" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="">
                         <small id="helpId" class="form-text text-muted"></small>
                     </div>
-                </form>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
             </div>
         </div>
     </div>

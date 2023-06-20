@@ -10,11 +10,19 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Role, {
-        foreignKey: "role",
+        foreignKey: "id_role",
         onDelete: "CASCADE",
       });
       this.belongsTo(models.Section, {
-        foreignKey: "role",
+        foreignKey: "id_section",
+        onDelete: "CASCADE",
+      });
+      this.hasMany(models.Visiteur, {
+        foreignKey: "add_by",
+        onDelete: "CASCADE",
+      });
+      this.hasMany(models.Consultation, {
+        foreignKey: "user_id",
         onDelete: "CASCADE",
       });
     }
@@ -27,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       username: DataTypes.STRING,
       password: DataTypes.STRING,
       birthday: DataTypes.DATE,
-      role: DataTypes.INTEGER,
+      id_role: DataTypes.INTEGER,
       status: DataTypes.BOOLEAN,
       id_section: DataTypes.INTEGER,
     },

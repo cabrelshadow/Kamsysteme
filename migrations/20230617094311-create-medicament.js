@@ -2,24 +2,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Visiteurs", {
+    await queryInterface.createTable("Medicaments", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      nom_visteur: {
+      nom: {
         type: Sequelize.STRING,
       },
-      cni: {
-        type: Sequelize.STRING,
-      },
-      contact: {
+      prix: {
         type: Sequelize.INTEGER,
       },
-      add_by: {
+      date_expiration: {
+        type: Sequelize.DATE,
+      },
+      quantite: {
         type: Sequelize.INTEGER,
+      },
+      user_id: {
+        type: Sequelize.INTEGER,
+        /* references: {
+          model: {
+            tableName: "User",
+            schema: "schema",
+          },
+          key: "id",
+        }, */
       },
       createdAt: {
         allowNull: false,
@@ -30,12 +40,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-
-    // Add foreign key constraint
-    await queryInterface.addConstraint("Visiteurs", {
-      fields: ["add_by"],
+    await queryInterface.addConstraint("Medicaments", {
+      fields: ["user_id"],
       type: "foreign key",
-      name: "fk_visiteurs_users",
+      name: "fk_user_medicamment",
       references: {
         table: "Users",
         field: "id",
@@ -45,7 +53,7 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.removeConstraint("visiteurs", "fk_visiteurs_users");
-    await queryInterface.dropTable("visiteurs");
+    await queryInterface.removeConstraint("Medicaments", "fk_user_medicamment");
+    await queryInterface.dropTable("Medicaments");
   },
 };

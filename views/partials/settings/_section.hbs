@@ -7,10 +7,47 @@
             <caption>List des sections</caption>
             <tr>
                 <th>Nom de la section</th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="">
-
+            {{#each sections}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" data-bs-target="#editSection{{id}}" data-bs-toggle="modal">Modifier</button>
+                        <button class="btn btn-danger btn-sm"> Supprimer</button>
+                    </td>
+                </tr>
+                <!-- Modal Body -->
+                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                <div class="modal fade" id="editSection{{id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                    aria-labelledby="modalTitleEditSection{{id}}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalTitleEditSection{{id}}">Modifer la section {{name}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/settings/edit-section/{{id}}" method="post">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nom de la section</label>
+                                        <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
+                                            placeholder="Nom de la section" value="{{name}}">
+                                        <small id="helpId" class="form-text text-muted"></small>
+                                    </div>
+                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         </tbody>
     </table>
 </div>
@@ -26,19 +63,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="/settings/add-section" method="post">
                     <div class="mb-3">
-                    
-                        <label for="nom" class="form-label">Nom de la section</label>
-                        <input type="text" class="form-control" name="nom" id="nom" aria-describedby="helpId"
+                        <label for="name" class="form-label">Nom de la section</label>
+                        <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
                             placeholder="Nom de la section">
                         <small id="helpId" class="form-text text-muted"></small>
                     </div>
-                </form>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
             </div>
         </div>
     </div>
